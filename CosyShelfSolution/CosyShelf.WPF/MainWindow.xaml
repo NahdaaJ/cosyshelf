@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CosyShelf.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="CosyShelf"
+        MinHeight="600" MinWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170px" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
+        <!-- Background Layer -->
+        <Rectangle Grid.ColumnSpan="2" Fill="{StaticResource TertiaryBrush}" />
+
+        <!-- Grid Pattern Layer -->
+        <Rectangle Grid.ColumnSpan="2" Fill="{StaticResource GridPatternBrush}" />
+
+        <StackPanel Grid.Column="0" Style="{StaticResource SideBarStyle}">
+            <Image Source="/Assets/Icons/logo.png" Style="{StaticResource SideBarLogoStyle}"/>
+
+            <StackPanel  Style="{StaticResource ButtonContainerStyle}">
+                <Button Click="Home_Click" Style="{StaticResource NavButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Assets/Icons/home.png" Style="{StaticResource ButtonIcon}"/>
+                        <TextBlock Text="HOME"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="TBR_Click" Style="{StaticResource NavButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Assets/Icons/tbr-list.png" Style="{StaticResource ButtonIcon}"/>
+                        <TextBlock Text="TBR"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="Currently_Reading_Click" Style="{StaticResource NavButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Assets/Icons/currently-reading.png" Style="{StaticResource ButtonIcon}"/>
+                        <TextBlock Text="READING"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="Read_Click" Style="{StaticResource NavButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Assets/Icons/read-list.png" Style="{StaticResource ButtonIcon}"/>
+                        <TextBlock Text="READ"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

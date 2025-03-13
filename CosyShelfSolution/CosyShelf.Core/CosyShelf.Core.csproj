@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CosyShelf.Data\CosyShelf.Data.csproj" />
+  </ItemGroup>
+
 </Project>

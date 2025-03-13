@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using CosyShelf.WPF.Pages;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,5 +20,30 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        var fontFamily = (FontFamily)Application.Current.Resources["NunitoFont"];
+        this.FontFamily = fontFamily;
+
+        MainFrame.Navigate(new Homepage());
+    }
+
+    private void Home_Click(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new Homepage());
+    }
+
+    private void TBR_Click(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new TbrPage());
+    }
+
+    private void Currently_Reading_Click(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new CurrentlyReadingPage());
+    }
+
+    private void Read_Click(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new ReadPage());
     }
 }
