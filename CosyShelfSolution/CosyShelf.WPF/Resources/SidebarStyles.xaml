@@ -3,6 +3,11 @@
 
     <Style x:Key="SideBarStyle" TargetType="StackPanel">
         <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <!--<Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="{StaticResource Colour1}" Direction="0" ShadowDepth="0" BlurRadius="10" />
+            </Setter.Value>
+        </Setter>-->
     </Style>
 
     <Style x:Key="SideBarLogoStyle" TargetType="Image">

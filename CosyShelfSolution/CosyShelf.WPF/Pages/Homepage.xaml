@@ -9,6 +9,32 @@
       Title="Homepage">
 
     <Grid>
-        <TextBlock Text="Homepage Yayaya" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Style="{StaticResource SearchBoxStyle}" 
+                 x:Name="SearchBox" 
+                 AcceptsReturn="True" 
+                 Text="Search author or book title"
+                 GotFocus="SearchBox_GotFocus" 
+                 LostFocus="SearchBox_LostFocus"
+                 Grid.Column="0"/>
+            <Button x:Name="SearchButton" 
+                    Style="{StaticResource SearchButtonStyle}"
+                    Grid.Column="1"
+                    Click="Search_Click">
+                <Image Source="/Assets/Icons/search.png" Width="25"/>
+            </Button>
+        </Grid>
+
+        <TextBlock Grid.Row="1" Text="Homepage Yayaya" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
     </Grid>
 </Page>

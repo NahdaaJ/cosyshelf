@@ -23,6 +23,43 @@ namespace CosyShelf.WPF.Pages
         public Homepage()
         {
             InitializeComponent();
+            InitializePlaceholder();
+        }
+
+        private void InitializePlaceholder()
+        {
+            if (string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                SearchBox.Text = "Search author or book title";
+            }
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SearchBox.Text == "Search author or book title")
+            {
+                SearchBox.Text = string.Empty;
+            }
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                SearchBox.Text = "Search author or book title";
+            }
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            string searchText = SearchBox.Text;
+            string displayMessage = $"You have searched: {searchText}.";
+
+            if (searchText == "Search author or book title")
+            {
+                displayMessage = "You have not entered a value.";
+            }
+            MessageBox.Show(displayMessage);
         }
     }
 }
