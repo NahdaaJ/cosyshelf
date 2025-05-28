@@ -46,17 +46,29 @@ namespace CosyShelf.Data.Services
             await _repository.DeleteAsync(id);
         }
 
-        private Book MapToModel(BookEntity book) => new Book
-        {
-            Id = book.Id,
-            Title = book.Title,
-            Author = book.Author,
-            Description = book.Description,
-            Rating = book.Rating,
-            Comment = book.Comment,
-            Status = (Core.Enums.BookStatus)book.Status,
-        };
+        //private Book MapToModel(BookEntity book) => new Book
+        //{
+        //    Id = book.Id,
+        //    Title = book.Title,
+        //    Author = book.Author,
+        //    Description = book.Description,
+        //    Rating = book.Rating,
+        //    Comment = book.Comment,
+        //    Status = (Core.Enums.BookStatus)book.Status,
+        //};
 
+        private Book MapToModel(BookEntity bookEntity)
+        {
+            var book = new Book(bookEntity.Title, bookEntity.Author)
+            {
+                Id = bookEntity.Id,
+                Description = bookEntity.Description,
+                Rating = bookEntity.Rating,
+                Comment = bookEntity.Comment,
+                Status = (Core.Enums.BookStatus)bookEntity.Status
+            };
+            return book;
+        }
         private BookEntity MapToEntity(Book book) => new BookEntity
         {
             Id = book.Id,

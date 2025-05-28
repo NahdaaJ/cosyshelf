@@ -4,14 +4,12 @@ namespace CosyShelf.UI
 {
     public partial class App : Application
     {
-        public App(IServiceProvider serviceProvider)
+        public App(IServiceProvider serviceProvider, MainPage mainPage)
         {
             InitializeComponent();
-
-            // Start initializing DB asynchronously
             InitialiseDb(serviceProvider);
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(mainPage); ;
         }
 
         private async void InitialiseDb(IServiceProvider services)
