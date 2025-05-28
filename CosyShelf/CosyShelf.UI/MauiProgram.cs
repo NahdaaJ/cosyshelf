@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CosyShelf.Data.Entities;
+using CosyShelf.Data.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace CosyShelf.UI;
 
@@ -16,7 +18,11 @@ public static class MauiProgram
 			});
 
         // Initialise the database
-		AppSetup.InitialiseDb();
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "cosyshelf.db");
+        builder.Services.AddSingleton(_ => dbPath);
+
+        // Register services
+        builder.Services.AddSingleton<IRepository<BookEntity>, SQLiteRepository<BookEntity>>();
 
 #if DEBUG
         builder.Logging.AddDebug();
