@@ -14,23 +14,28 @@ namespace CosyShelf.UI
             InitializeComponent();
             _bookService = bookService;
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await DisplayAllBooks();
+        }
 
         private async void OnAddBookClicked(object sender, EventArgs e)
         {
             var book = CreateBook();
             if (book != null)
             {
-                // Assuming you have a service to handle book storage
                 await _bookService.AddBookAsync(book);
             }
 
-            // Optionally, clear the input fields after adding
+            AddBookToDisplay(book);
+
             BookTitle.Text = string.Empty;
             BookAuthor.Text = string.Empty;
             BookDescription.Text = string.Empty;
             BookRating.Text = string.Empty;
             BookComment.Text = string.Empty;
-            BookStatus.Text = string.Empty; // Reset the status dropdown
+            BookStatus.Text = string.Empty;
 
         }
 
@@ -44,7 +49,7 @@ namespace CosyShelf.UI
             }
             else
             {
-                book.Rating = null; // or handle invalid input as needed
+                book.Rating = null;
             }
             book.Comment = BookComment.Text;
             switch (BookStatus.Text)
@@ -64,6 +69,24 @@ namespace CosyShelf.UI
             }
 
             return book;
+        }
+
+        private async Task DisplayAllBooks()
+        {
+            var books = await _bookService.GetAllBooksAsync();
+            foreach (var book in books)
+            {
+                AddBookToDisplay(book);
+            }
+        }
+
+        private void AddBookToDisplay(Book book)
+        {
+            BookDisplay.Children.Add(new Label
+            {
+                Text = $"{book.Title} by {book.Author}\n{book.Description}\nRating: {book.Rating?.ToString("0.0") ?? "N/A"}\tStatus: {book.Status}",
+                Margin = new Thickness(5)
+            });
         }
     }
 

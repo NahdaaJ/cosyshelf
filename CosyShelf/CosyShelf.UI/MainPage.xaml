@@ -2,14 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CosyShelf.UI.MainPage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" >
+                <Entry x:Name="BookTitle" Placeholder="Enter book name"/>
+                <Entry x:Name="BookAuthor" Placeholder="Enter book author"/>
+                <Entry x:Name="BookDescription" Placeholder="Enter book description"/>
+                <Entry x:Name="BookRating" Placeholder="Enter book rating"/>
+                <Entry x:Name="BookComment" Placeholder="Enter book comment"/>
+                <Entry x:Name="BookStatus" Placeholder="Enter book status"/>
+                <Button Text="Add" Clicked="OnAddBookClicked"/>
+            </HorizontalStackLayout>
 
-    <HorizontalStackLayout>
-        <Entry x:Name="BookTitle" Placeholder="Enter book name"/>
-        <Entry x:Name="BookAuthor" Placeholder="Enter book author"/>
-        <Entry x:Name="BookDescription" Placeholder="Enter book description"/>
-        <Entry x:Name="BookRating" Placeholder="Enter book rating"/>
-        <Entry x:Name="BookComment" Placeholder="Enter book comment"/>
-        <Entry x:Name="BookStatus" Placeholder="Enter book status"/>
-        <Button Text="Add" Clicked="OnAddBookClicked"/>
-    </HorizontalStackLayout>
+            <VerticalStackLayout x:Name="BookDisplay"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center">        
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+
 </ContentPage>
